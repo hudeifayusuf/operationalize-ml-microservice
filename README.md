@@ -46,8 +46,21 @@ Your code has been rated at 10.00/10
 6. Install and configure Kubernete Cluster, Minikube.
 > To run a Kubernetes cluster locally, for testing and project purposes, you need the Kubernetes package, Minikube. Thorough installation instructions can be found [here](https://minikube.sigs.k8s.io/docs/start/).
 
+### Project Files
 
-### Running app
+- **.circleci**: Contains CircleCI configuration file.
+- **model_data**: Machine learning model related data
+- **output_txt_files**: Files that contain application’s log output
+- **app.py**: The main application file.
+- **requirements.txt**: Contains a list of project’s dependencies.
+- **Makefile**: Includes commands for installing dependencies, testing and linting project source code.
+- **Dockerfile**: Contains instructions that Docker uses to build and assemble a container image.
+- **run_docker.sh**: Builds and runs a given docker image.
+- **upload_docker.sh**: Deploys an image to docker hub.
+- **run_kubernetes.sh**: Runs the app in Kubernetes cluster.
+- **make_prediction.sh**: Sends some input data to the containerized app. Used to test the app locally.
+
+### Running the Application
 
 #### Three modes:
 
@@ -58,7 +71,7 @@ In order to run in Kubernetes, first upload the built image to docker hub. This 
    - First run `./upload_docker.sh` to upload the docker image
    - Then run `./run_kubernetes.sh` to run the uploaded docker image in Kubernetes
 
-### Making predictions
+### Making Predictions
 To make a prediction, you have to keep the application running and perform the following steps:
 1. Open a separate tab or terminal window.
 2. In this new window, navigate to the main project directory.
