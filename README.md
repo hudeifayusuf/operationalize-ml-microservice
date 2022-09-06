@@ -78,7 +78,7 @@ To make a prediction, you have to keep the application running and perform the f
 3. Execute `./make_prediction.sh`  
 This shell script is responsible for sending some input data to your containerized application via the appropriate port. In the prediction window, you should see the value of the prediction:
 ```JSON
- {
+{
   "prediction": [
     20.35373177134412
   ]
