@@ -2,13 +2,13 @@
 
 ## Project Overview
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+In this project, I worked on operationalizing a Machine Learning Microservice API.  
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+I was given a pre-trained, sklearn model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests one’s ability to operationalize a Python flask app—in a provided file, app.py—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
 
 ### Project Tasks
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
+The project goal is to operationalize this working, machine learning microservice using [Kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
 * Test your project code using linting
 * Complete a Dockerfile to containerize this application
 * Deploy your containerized application using Docker and make a prediction
@@ -25,26 +25,56 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 
 ## Setup the Environment
 
-* Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
-```bash
-python3 -m pip install --user virtualenv
-# You should have Python 3.7 available in your host. 
-# Check the Python path using `which python3`
-# Use a command similar to this one:
-python3 -m virtualenv --python=<path-to-Python3.7> .devops
-source .devops/bin/activate
+1. Create a virtual environment and activate it
+```python
+python3 -m venv ~/.devops
+source ~/.devops/bin/activate
 ```
-* Run `make install` to install the necessary dependencies
+2. Run `make install` to install the necessary dependencies
+3. Install Hadolint for linting Dockerfile
+```shell
+sudo  wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64
+sudo chmod +x /bin/hadolint
+```
+4. Type `make lint` to run lint checks on the project code.   
+All requirements should be satisfied, and you should see a printed statement that rates your code
+```shell
+------------------------------------
+Your code has been rated at 10.00/10
+```
+5. Install and configure Docker
+6. Install and configure Kubernete Cluster, Minikube.
+> To run a Kubernetes cluster locally, for testing and project purposes, you need the Kubernetes package, Minikube. Thorough installation instructions can be found [here](https://minikube.sigs.k8s.io/docs/start/).
 
-### Running `app.py`
+
+### Running app
+
+#### Three modes:
 
 1. Standalone:  `python app.py`
 2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+3. Run in Kubernetes:  
+In order to run in Kubernetes, first upload the built image to docker hub. This will make it accessible to a Kubernets cluster
+   - First run `./upload_docker.sh` to upload the docker image
+   - Then run `./run_kubernetes.sh` to run the uploaded docker image in Kubernetes
 
-### Kubernetes Steps
+### Making predictions
+To make a prediction, you have to keep the application running and perform the following steps:
+1. Open a separate tab or terminal window.
+2. In this new window, navigate to the main project directory.
+3. Execute `./make_prediction.sh`  
+This shell script is responsible for sending some input data to your containerized application via the appropriate port.  
+In the prediction window, you should see the value of the prediction:
+```JSON
+ {
+  "prediction": [
+    20.35373177134412
+  ]
+}
+ ```
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+### Reference
+- [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+- [Minikube tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/)
+- [Kubernetes](https://kubernetes.io/)
+- [Hadolint](https://github.com/hadolint/hadolint/)
