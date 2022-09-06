@@ -1,4 +1,4 @@
-<include a CircleCI status badge, here>
+[![hudeyfa](https://circleci.com/gh/hudeyfa/operationalizing-ml-microservice-api.svg?style=svg)](https://app.circleci.com/pipelines/github/hudeyfa/operationalizing-ml-microservice-api)
 
 ## Project Overview
 
