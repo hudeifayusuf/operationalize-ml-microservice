@@ -67,7 +67,7 @@ Your code has been rated at 10.00/10
 1. Standalone:  `python app.py`
 2. Run in Docker:  `./run_docker.sh`
 3. Run in Kubernetes:  
-In order to run in Kubernetes, first upload the built image to docker hub. This will make it accessible to a Kubernets cluster
+In order to run in Kubernetes, first upload the built image to docker hub. This will make it accessible to a Kubernets cluster.
    - First run `./upload_docker.sh` to upload the docker image
    - Then run `./run_kubernetes.sh` to run the uploaded docker image in Kubernetes
 
@@ -76,8 +76,7 @@ To make a prediction, you have to keep the application running and perform the f
 1. Open a separate tab or terminal window.
 2. In this new window, navigate to the main project directory.
 3. Execute `./make_prediction.sh`  
-This shell script is responsible for sending some input data to your containerized application via the appropriate port.  
-In the prediction window, you should see the value of the prediction:
+This shell script is responsible for sending some input data to your containerized application via the appropriate port. In the prediction window, you should see the value of the prediction:
 ```JSON
  {
   "prediction": [
